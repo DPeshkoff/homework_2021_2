@@ -1,7 +1,6 @@
 /** @module plainify */
 
-/* is ; not neccessary here? */
-'use strict'
+'use strict';
 
 /**
  * Plainify JS-object
@@ -12,13 +11,11 @@
 const plainify = (object, path = "") => {
     /* path is used for nested objects */
 
-    let result = {};
-
     /* get object keys */
     const object_keys = Object.keys(object);
 
-    /* for each key */
-    for (let key of object_keys) {
+    const result = object_keys.reduce(function(result, key) {
+
         const value = object[key];
 
         /* check if we do not have nested objects */
@@ -29,8 +26,13 @@ const plainify = (object, path = "") => {
         } else {
             const nested_object = plainify(value, `${path}${key}.`);
 
-            Object.assign(result, nested_object);
+            result = {...result, ...nested_object };
+
         }
-    }
+        return result;
+
+    }, {}, '');
+
     return result;
+
 }
