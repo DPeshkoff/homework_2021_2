@@ -43,117 +43,7 @@ QUnit.module('Тестируем функцию plainify', function() {
         assert.deepEqual(plainify(nested2), plain2);
     });
 
-    QUnit.test('plainify нормально работает на большой степени вложенности (50)', function(assert) {
-        /* strange test below this point */
-
-        const _test_nested_2_1 = {
-            i: {
-                am: {
-                    very: {
-                        deep: {
-                            and: {
-                                not: {
-                                    regretting: {
-                                        anything: {
-                                            ever: {
-                                                done: {
-                                                    with: {
-                                                        my: {
-                                                            life: {
-                                                                therefore: {
-                                                                    i: {
-                                                                        am: {
-                                                                            happy: {
-                                                                                is: {
-                                                                                    this: {
-                                                                                        the: {
-                                                                                            true: {
-                                                                                                happinnes: {
-                                                                                                    who: {
-                                                                                                        knows: {
-                                                                                                            but: {
-                                                                                                                i: {
-                                                                                                                    believe: { in: {
-                                                                                                                            my: {
-                                                                                                                                point: {
-                                                                                                                                    of: {
-                                                                                                                                        view: {
-                                                                                                                                            the: {
-                                                                                                                                                real: {
-                                                                                                                                                    question: {
-                                                                                                                                                        is: {
-                                                                                                                                                            why: {
-                                                                                                                                                                this: {
-                                                                                                                                                                    test: {
-                                                                                                                                                                        even: {
-                                                                                                                                                                            exists: {
-                                                                                                                                                                                why: {
-                                                                                                                                                                                    are: {
-                                                                                                                                                                                        we: {
-                                                                                                                                                                                            still: {
-                                                                                                                                                                                                here: {
-                                                                                                                                                                                                    just: {
-                                                                                                                                                                                                        to: {
-                                                                                                                                                                                                            suffer: {
-                                                                                                                                                                                                                really: true
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                        }
-                                                                                                                                                                                                    }
-                                                                                                                                                                                                }
-                                                                                                                                                                                            }
-                                                                                                                                                                                        }
-                                                                                                                                                                                    }
-                                                                                                                                                                                }
-                                                                                                                                                                            }
-                                                                                                                                                                        }
-                                                                                                                                                                    }
-                                                                                                                                                                }
-                                                                                                                                                            }
-                                                                                                                                                        }
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                    }
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        const _result_nested_2_1 = {
-            'i.am.very.deep.and.not.regretting.anything.ever.done.with.my.life.therefore.i.am.happy.is.this.the.true.happinnes.who.knows.but.i.believe.in.my.point.of.view.the.real.question.is.why.this.test.even.exists.why.are.we.still.here.just.to.suffer.really': true
-        };
-
-        assert.deepEqual(plainify(_test_nested_2_1), _result_nested_2_1);
-
-    });
+    /* rip craziest test in my life */
 
     QUnit.test('plainify работает правильно с крупными примерами', function(assert) {
         /* g-man test */
@@ -262,7 +152,7 @@ QUnit.module('Тестируем функцию plainify', function() {
             'would.have.gone.to.waste.until': '...'
         };
 
-        assert.deepEqual(plainify(_test_nested_3_1), _result_nested_3_1);
+        assert.deepEqual(plainify(_test_nested_3_1), _result_nested_3_1, 'G-Man test');
 
         /* sgml test */
 
@@ -303,7 +193,7 @@ QUnit.module('Тестируем функцию plainify', function() {
             'glossary.GlossDiv.GlossList.GlossEntry.GlossDef.para': 'A meta-markup language, used to create markup languages such as DocBook.'
         };
 
-        assert.deepEqual(plainify(_test_nested_3_2), _result_nested_3_2);
+        assert.deepEqual(plainify(_test_nested_3_2), _result_nested_3_2, 'SGML test');
     });
 
     QUnit.test('plainify работает правильно на большом числе повторов (15)', function(assert) {
@@ -467,7 +357,7 @@ QUnit.module('Тестируем функцию plainify', function() {
             'message15.content.brightness': 161
         };
 
-        assert.deepEqual(plainify(_test_nested_4_1), _result_nested_4_1);
+        assert.deepEqual(plainify(_test_nested_4_1), _result_nested_4_1, 'Arduino messages (15) test');
 
     });
 
@@ -492,7 +382,7 @@ QUnit.module('Тестируем функцию plainify', function() {
             '你好.мы.are.❤.科技园': true
         };
 
-        assert.deepEqual(plainify(_test_nested_5_1), _result_nested_5_1);
+        assert.deepEqual(plainify(_test_nested_5_1), _result_nested_5_1, 'UTF-8 test');
 
         /* mfa test */
 
@@ -522,22 +412,105 @@ QUnit.module('Тестируем функцию plainify', function() {
         };
 
         const _result_nested_5_2 = {
-            "ʑ.m̰.ꜛe": 0,
-            "ʑ.m̰.n̩": 2,
-            "ʑ.w̰.ǂ": "yes",
-            "ʑ.ɧ.t͡s": 0,
-            "ʑ.ɧ.d͡z": 1,
-            "ʑ.ɧ.t͡ʃ": 2,
-            "ʑ.ɧ.d͡ʒ": 3,
-            "ʑ.ɧ.t͡ɕ": 4,
-            "ʑ.ɧ.d͡ʑ": 5,
-            "ʑ.ɧ.t͡ɬ": 6,
-            "ʑ.ɧ.k͡p": 7,
-            "ʑ.ɧ.ɡ͡b": 8,
-            "ʑ.ɧ.ŋ͡m": 9
+            'ʑ.m̰.ꜛe': 0,
+            'ʑ.m̰.n̩': 2,
+            'ʑ.w̰.ǂ': 'yes',
+            'ʑ.ɧ.t͡s': 0,
+            'ʑ.ɧ.d͡z': 1,
+            'ʑ.ɧ.t͡ʃ': 2,
+            'ʑ.ɧ.d͡ʒ': 3,
+            'ʑ.ɧ.t͡ɕ': 4,
+            'ʑ.ɧ.d͡ʑ': 5,
+            'ʑ.ɧ.t͡ɬ': 6,
+            'ʑ.ɧ.k͡p': 7,
+            'ʑ.ɧ.ɡ͡b': 8,
+            'ʑ.ɧ.ŋ͡m': 9
         };
 
-        assert.deepEqual(plainify(_test_nested_5_2), _result_nested_5_2);
+        assert.deepEqual(plainify(_test_nested_5_2), _result_nested_5_2, 'MFA test');
+
+    });
+
+    QUnit.test('plainify работает правильно с массивами', function(assert) {
+
+        const _test_nested_6_1 = ['Alyosha Popovich', 'Dobrynya Nikitich', 'Ilya Muromets'];
+
+        const _result_nested_6_1 = {
+            0: 'Alyosha Popovich',
+            1: 'Dobrynya Nikitich',
+            2: 'Ilya Muromets'
+        };
+
+        assert.deepEqual(plainify(_test_nested_6_1), _result_nested_6_1, "'Alyosha Popovich ', 'Dobrynya Nikitich ', 'Ilya Muromets '");
+
+        /* mfa test */
+
+        const _test_nested_6_2 = [{
+                'name': 'Alice',
+                'energy': 0
+            },
+            {
+                'name': 'Bob',
+                'energy': 146
+            },
+            {
+                'alias': 'Eva',
+                'energy': -5.5
+            }
+        ];
+
+        const _result_nested_6_2 = {
+            '0.name': 'Alice',
+            '0.energy': 0,
+            '1.name': 'Bob',
+            '1.energy': 146,
+            '2.alias': 'Eva',
+            '2.energy': -5.5
+        };
+
+        assert.deepEqual(plainify(_test_nested_6_2), _result_nested_6_2, 'Alice, Bob, Eva array');
+
+    });
+
+    QUnit.test('plainify работает правильно со строками', function(assert) {
+
+        const _test_nested_7_1 = 'hello world';
+
+        const _result_nested_7_1 = {
+            0: 'h',
+            1: 'e',
+            2: 'l',
+            3: 'l',
+            4: 'o',
+            5: ' ',
+            6: 'w',
+            7: 'o',
+            8: 'r',
+            9: 'l',
+            10: 'd'
+        };
+
+        assert.deepEqual(plainify(_test_nested_7_1), _result_nested_7_1, 'hello world');
+
+        const _test_nested_7_2 = "I'm spec\nial!"
+
+        const _result_nested_7_2 = {
+            0: 'I',
+            1: '\'',
+            2: 'm',
+            3: ' ',
+            4: 's',
+            5: 'p',
+            6: 'e',
+            7: 'c',
+            8: '\n',
+            9: 'i',
+            10: 'a',
+            11: 'l',
+            12: '!'
+        };
+
+        assert.deepEqual(plainify(_test_nested_7_2), _result_nested_7_2, "I'm spec\\nial!");
 
     });
 
