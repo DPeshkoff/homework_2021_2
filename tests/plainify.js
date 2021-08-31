@@ -2,34 +2,23 @@
 
 QUnit.module('Тестируем функцию plainify', function() {
     QUnit.test('plainify работает правильно', function(assert) {
+        assert.deepEqual(plainify({ foo: 'bar', baz: 42 }), { 'foo': 'bar', 'baz': 42 });
 
-        const _test_plainify_1_1 = { 
-            foo: 'bar', 
-            baz: 42 
-        };
-
-        const _result_plainify_1_1 = {
-            'foo': 'bar', 
-            'baz': 42
-        };
-
-        assert.deepEqual(plainify(_test_plainify_1_1), _result_plainify_1_1, 'Initial test #1');
-
-        const _test_plainify_1_2 = {
+        const nested1 = {
             deep: {
                 foo: 'bar',
                 baz: 42
             }
         };
 
-        const _result_plainify_1_2 = {
+        const plain1 = {
             'deep.foo': 'bar',
             'deep.baz': 42
         };
 
-        assert.deepEqual(plainify(_test_plainify_1_2), _result_plainify_1_2, 'Initial test #2');
+        assert.deepEqual(plainify(nested1), plain1);
 
-        const _test_plainify_1_3 = {
+        const nested2 = {
             deep: {
                 foobar: 0,
                 nested: {
@@ -44,17 +33,16 @@ QUnit.module('Тестируем функцию plainify', function() {
             }
         };
 
-        const _result_plainify_1_3 = {
+        const plain2 = {
             'deep.foobar': 0,
             'deep.nested.object.fields.foo': 42,
             'deep.nested.object.fields.bar': 42,
             'deep.nested.object.fields.baz': 42
         };
 
-        assert.deepEqual(plainify(_test_plainify_1_3), _result_plainify_1_3, 'Initial test #3');
+        assert.deepEqual(plainify(nested2), plain2);
     });
 
-    /* rip craziest test in my life */
 
     QUnit.test('plainify работает правильно с крупными примерами', function(assert) {
         /* g-man test */
