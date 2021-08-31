@@ -10,21 +10,20 @@
  */
 const plainify = (object, path = '') => {
 
-    if (!isNotAnObject(object)) {
+    if (isNotAnObject(object)) {
+	return undefined;
+    }
 
-        return Object.entries(object).reduce(function(accumulator, [key, value]) {
+    return Object.entries(object).reduce(function(accumulator, [key, value]) {
 
-            const nested_object = isNotAnObject(value) 
-		? { [`${path}${key}`]: value }
-		: plainify(value, `${path}${key}.`);
+    	const nested_object = isNotAnObject(value) 
+            ? { [`${path}${key}`]: value }
+            : plainify(value, `${path}${key}.`);
 
-            return {...accumulator, ...nested_object };
+        return {...accumulator, ...nested_object };
 
-        }, {});
+    }, {});
 
-    } 
-
-    return undefined;
 }
 
 
