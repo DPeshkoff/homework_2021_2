@@ -170,7 +170,6 @@ QUnit.module('Тестируем функцию plainify', function() {
                             Abbrev: 'ISO 8879:1986',
                             GlossDef: {
                                 para: 'A meta-markup language, used to create markup languages such as DocBook.',
-                                GlossSeeAlso: ['GML', 'XML']
                             },
                             GlossSee: 'markup'
                         }
@@ -188,8 +187,6 @@ QUnit.module('Тестируем функцию plainify', function() {
             'glossary.GlossDiv.GlossList.GlossEntry.GlossSee': 'markup',
             'glossary.GlossDiv.GlossList.GlossEntry.Abbrev': 'ISO 8879:1986',
             'glossary.GlossDiv.GlossList.GlossEntry.Acronym': 'SGML',
-            'glossary.GlossDiv.GlossList.GlossEntry.GlossDef.GlossSeeAlso.0': 'GML',
-            'glossary.GlossDiv.GlossList.GlossEntry.GlossDef.GlossSeeAlso.1': 'XML',
             'glossary.GlossDiv.GlossList.GlossEntry.GlossDef.para': 'A meta-markup language, used to create markup languages such as DocBook.'
         };
 
@@ -563,11 +560,11 @@ QUnit.module('Тестируем функцию plainify', function() {
 
         assert.deepEqual(plainify(_test_plainify_11_6), _result_plainify_11_6, 'new RegExp(\'test\') -> undefined');
 
-        const _test_plainify_11_7 = new String();
+        const _test_plainify_11_7 = new String('test');
 
         const _result_plainify_11_7 = undefined;
 
-        assert.deepEqual(plainify(_test_plainify_11_7), _result_plainify_11_7, 'new String() -> undefined');
+        assert.deepEqual(plainify(_test_plainify_11_7), _result_plainify_11_7, 'new String(\'test\') -> undefined');
 
     });
 
