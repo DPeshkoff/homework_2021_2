@@ -8,31 +8,21 @@
  * @param {string} path - optional - nested object path
  * @returns {object} Plain object
  */
-const plainify = (object, path = "") => {
-    /* path is used for nested objects */
+const plainify = (object, path = '') => {
 
-    /* get object keys */
-    const object_keys = Object.keys(object);
+    if ((typeof object === 'object' && object !== null) && object.constructor !== undefined && (Object.getPrototypeOf(object) === Object.prototype || path !== '')) {
 
-    const result = object_keys.reduce(function(result, key) {
+        return Object.entries(object).reduce(function(accumulator, [key, value]) {
 
-        const value = object[key];
+            const nested_object = typeof value !== 'object' ? {
+                [`${path}${key}`]: value
+            } : plainify(value, `${path}${key}.`);
 
-        /* check if we do not have nested objects */
-        if (typeof value != 'object') {
+            return {...accumulator, ...nested_object };
 
-            result[`${path}${key}`] = value;
+        }, {});
 
-        } else {
-            const nested_object = plainify(value, `${path}${key}.`);
-
-            result = {...result, ...nested_object };
-
-        }
-        return result;
-
-    }, {}, '');
-
-    return result;
-
+    } else {
+        return undefined;
+    }
 }
