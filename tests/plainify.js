@@ -525,7 +525,7 @@ QUnit.module('Тестируем функцию plainify', function() {
 
     });
 
-    QUnit.test('plainify работает правильно с тем, object, но не должно plainify\'иться', function(assert) {
+    QUnit.test('plainify работает правильно с тем, object, но не должно plainify\'иться', function(assert) {
 
         const _test_plainify_11_1 = new Boolean();
 
