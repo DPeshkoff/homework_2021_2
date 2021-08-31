@@ -22,12 +22,10 @@ const plainify = (object, path = '') => {
 
         }, {});
 
-    } else {
-        return undefined;
-    }
-}
+    } 
 
-///////////////////////////////////////////////////////////////////////////////
+    return undefined;
+}
 
 
 /**
