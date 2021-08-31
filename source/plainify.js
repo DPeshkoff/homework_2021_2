@@ -9,20 +9,27 @@
  * @returns {object} Plain object
  */
 const plainify = (object, path = '') => {
+	try {
 
-    if (isNotAnObject(object)) {
-	return undefined;
-    }
+    		if (isNotAnObject(object)) {
+			throw new TypeError('Несоответствующий тип объекта для plainify');	
+    		}
 
-    return Object.entries(object).reduce(function(accumulator, [key, value]) {
+    		return Object.entries(object).reduce(function(accumulator, [key, value]) {
 
-    	const nested_object = isNotAnObject(value) 
-            ? { [`${path}${key}`]: value }
-            : plainify(value, `${path}${key}.`);
+    			const nested_object = isNotAnObject(value) 
+            		? { [`${path}${key}`]: value }
+            		: plainify(value, `${path}${key}.`);
 
-        return {...accumulator, ...nested_object };
+        		return {...accumulator, ...nested_object };
 
-    }, {});
+    		}, {});
+
+	} catch(err) {
+		console.log(err.name + ': ' + err.message);
+		alert(err.name + ': ' + err.message);
+		return undefined;
+	}
 
 }
 
