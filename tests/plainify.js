@@ -432,10 +432,15 @@ QUnit.module('Тестируем функцию plainify', function () {
     	QUnit.test('plainify работает правильно с массивами', function(assert) {
 
         	const _test_plainify_6_1 = ['Alyosha Popovich', 'Dobrynya Nikitich', 'Ilya Muromets'];
+	//'Несоответствующий тип объекта для plainify'
 
-        	const _result_plainify_6_1 = undefined;
+        	const _result_plainify_6_1 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_6_1), _result_plainify_6_1, "'Alyosha Popovich ', 'Dobrynya Nikitich ', 'Ilya Muromets ' -> undefined");
+        	assert.throws(
+			() => { plainify(_test_plainify_6_1) }, 
+			_result_plainify_6_1, 
+			"'Alyosha Popovich ', 'Dobrynya Nikitich ', 'Ilya Muromets ' -> thrown TypeError"
+		);
 
         	/* mfa test */
 
@@ -453,9 +458,13 @@ QUnit.module('Тестируем функцию plainify', function () {
             		}
         	];
 
-        	const _result_plainify_6_2 = undefined;
+        	const _result_plainify_6_2 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_6_2), _result_plainify_6_2, 'Alice, Bob, Eva array -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_6_2) }, 
+			_result_plainify_6_2, 
+			'Alice, Bob, Eva array -> thrown TypeError'
+		);
 
     	});
 
@@ -463,15 +472,23 @@ QUnit.module('Тестируем функцию plainify', function () {
 
         	const _test_plainify_7_1 = 'hello world';
 
-        	const _result_plainify_7_1 = undefined;
+        	const _result_plainify_7_1 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_7_1), _result_plainify_7_1, 'hello world -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_7_1) },
+			_result_plainify_7_1, 
+			'hello world -> thrown TypeError'
+		);
 
         	const _test_plainify_7_2 = "I'm spec\nial!"
 
-        	const _result_plainify_7_2 = undefined;
+        	const _result_plainify_7_2 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_7_2), _result_plainify_7_2, "I'm spec\\nial! -> undefined");
+        	assert.throws(
+			() => { plainify(_test_plainify_7_2) }, 
+			_result_plainify_7_2, 
+			"I'm spec\\nial! -> thrown TypeError"
+		);
 
     	});
 
@@ -481,13 +498,21 @@ QUnit.module('Тестируем функцию plainify', function () {
             		return Math.random();
         	}
 
-        	const _result_plainify_8_1 = undefined;
+        	const _result_plainify_8_1 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_8_1()), _result_plainify_8_1, 'function() -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_8_1()) }, 
+			_result_plainify_8_1, 
+			'function() -> thrown TypeError'
+		);
 
-        	const _result_plainify_8_2 = undefined;
+        	const _result_plainify_8_2 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(max([1, 2, 3])), _result_plainify_8_2, 'max([1, 2, 3]) -> undefined');
+        	assert.throws(
+			() => { plainify(max([1, 2, 3])) },
+			 _result_plainify_8_2, 
+			'max([1, 2, 3]) -> thrown TypeError'
+		);
 
     	});
 
@@ -495,15 +520,23 @@ QUnit.module('Тестируем функцию plainify', function () {
 
         	const _test_plainify_9_1 = undefined;
 
-        	const _result_plainify_9_1 = undefined;
+        	const _result_plainify_9_1 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_9_1), _result_plainify_9_1, 'undefined -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_9_1) }, 
+			_result_plainify_9_1, 
+			'undefined -> thrown TypeError'
+		);
 
         	const _test_plainify_9_2 = null;
 
-        	const _result_plainify_9_2 = undefined;
+        	const _result_plainify_9_2 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_9_2), _result_plainify_9_2, 'null -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_9_2) },
+			_result_plainify_9_2, 
+			'null -> thrown TypeError'
+		);
 
     	});
 
@@ -511,15 +544,23 @@ QUnit.module('Тестируем функцию plainify', function () {
 
         	const _test_plainify_10_1 = NaN;
 
-        	const _result_plainify_10_1 = undefined;
+        	const _result_plainify_10_1 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_10_1), _result_plainify_10_1, 'NaN -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_10_1) },
+			_result_plainify_10_1,
+			'NaN -> thrown TypeError'
+		);
 
         	const _test_plainify_10_2 = Infinity;
 
-        	const _result_plainify_10_2 = undefined;
+        	const _result_plainify_10_2 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_10_2), _result_plainify_10_2, 'Infinity -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_10_2) },
+			_result_plainify_10_2,
+			'Infinity -> thrown TypeError'
+		);
 
     	});
 
@@ -527,45 +568,73 @@ QUnit.module('Тестируем функцию plainify', function () {
 
 		const _test_plainify_11_1 = new Boolean();
 
-        	const _result_plainify_11_1 = undefined;
+        	const _result_plainify_11_1 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_11_1), _result_plainify_11_1, 'new Boolean() -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_11_1) }, 
+			_result_plainify_11_1, 
+			'new Boolean() -> thrown TypeError'
+		);
 
         	const _test_plainify_11_2 = new Number();
 
-        	const _result_plainify_11_2 = undefined;
+        	const _result_plainify_11_2 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_11_2), _result_plainify_11_2, 'new Number() -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_11_2) },
+			_result_plainify_11_2,
+			'new Number() -> thrown TypeError'
+		);
 
         	const _test_plainify_11_3 = new Date();
 
-        	const _result_plainify_11_3 = undefined;
+        	const _result_plainify_11_3 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_11_3), _result_plainify_11_3, 'new Date() -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_11_3) },
+			_result_plainify_11_3,
+			'new Date() -> thrown TypeError'
+		);
 
         	const _test_plainify_11_4 = new Array();
 
-        	const _result_plainify_11_4 = undefined;
+        	const _result_plainify_11_4 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_11_4), _result_plainify_11_4, 'new Array() -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_11_4) },
+			_result_plainify_11_4,
+			'new Array() -> thrown TypeError'
+		);
 
         	const _test_plainify_11_5 = new Function();
 
-        	const _result_plainify_11_5 = undefined;
+        	const _result_plainify_11_5 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_11_5), _result_plainify_11_5, 'new Function() -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_11_5) },
+			_result_plainify_11_5,
+			'new Function() -> thrown TypeError'
+		);
 
         	const _test_plainify_11_6 = new RegExp('test');
 
-        	const _result_plainify_11_6 = undefined;
+        	const _result_plainify_11_6 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_11_6), _result_plainify_11_6, 'new RegExp(\'test\') -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_11_6) }, 
+			_result_plainify_11_6,
+			'new RegExp(\'test\') -> thrown TypeError'
+		);
 
         	const _test_plainify_11_7 = new String('test');
 
-        	const _result_plainify_11_7 = undefined;
+        	const _result_plainify_11_7 = new TypeError('Несоответствующий тип объекта для plainify');
 
-        	assert.deepEqual(plainify(_test_plainify_11_7), _result_plainify_11_7, 'new String(\'test\') -> undefined');
+        	assert.throws(
+			() => { plainify(_test_plainify_11_7) }, 
+			_result_plainify_11_7, 
+			'new String(\'test\') -> thrown TypeError'
+		);
 
     	});
 
