@@ -35,8 +35,8 @@ const plainify = (object, path = '') => {
 const isNotAnObject = (object) => {
     return (
             typeof object !== 'object' ||
-            object === null ||
-            object.constructor === undefined ||
+            !object ||
+            !object.constructor ||
             (Object.getPrototypeOf(object) !== Object.prototype)) ?
         true : false;
 }
